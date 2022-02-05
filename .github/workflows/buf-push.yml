@@ -1,0 +1,28 @@
+name: buf-push
+
+on:
+  push:
+    branches: [master]
+
+permissions: write-all
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2.4.0
+        with:
+          fetch-depth: 0
+
+      - name: Set up Go
+        uses: actions/setup-go@v2.1.5
+        with:
+          go-version: ^1.17
+
+      - name: Make
+        run: make
+
+      - name: Push
+        run: make buf-push
+        env:
+          BUF_TOKEN: ${{ secrets.BUF_TOKEN }}

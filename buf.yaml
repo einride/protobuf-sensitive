@@ -1,0 +1,7 @@
+version: v1
+
+name: buf.build/einride/sensitive
+
+lint:
+  use:
+    - DEFAULT

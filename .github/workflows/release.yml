@@ -1,4 +1,4 @@
-name: buf-push
+name: release
 
 on:
   push:
@@ -7,17 +7,11 @@ on:
 permissions: write-all
 
 jobs:
-  release:
+  buf-push:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2.4.0
-        with:
-          fetch-depth: 0
-
-      - name: Set up Go
-        uses: actions/setup-go@v2.1.5
-        with:
-          go-version: ^1.17
+      - name: Setup Sage
+        uses: einride/sage/actions/setup@master
 
       - name: Make
         run: make

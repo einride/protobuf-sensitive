@@ -20,3 +20,9 @@ jobs:
         run: make buf-push
         env:
           BUF_TOKEN: ${{ secrets.BUF_TOKEN }}
+
+      - name: Release
+        uses: go-semantic-release/action@v1.18
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          allow-initial-development-versions: true

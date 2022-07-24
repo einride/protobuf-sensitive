@@ -5,12 +5,13 @@
 
 sagefile := .sage/bin/sagefile
 
-.PHONY: $(sagefile)
-$(sagefile):
+$(sagefile): .sage/go.mod .sage/*.go
 	@cd .sage && go mod tidy && go run .
 
 .PHONY: sage
-sage: $(sagefile)
+sage:
+	@git clean -fxq $(sagefile)
+	@$(MAKE) $(sagefile)
 
 .PHONY: update-sage
 update-sage:
@@ -24,6 +25,10 @@ clean-sage:
 all: $(sagefile)
 	@$(sagefile) All
 
+.PHONY: buf-format
+buf-format: $(sagefile)
+	@$(sagefile) BufFormat
+
 .PHONY: buf-lint
 buf-lint: $(sagefile)
 	@$(sagefile) BufLint
@@ -32,6 +37,6 @@ buf-lint: $(sagefile)
 buf-push: $(sagefile)
 	@$(sagefile) BufPush
 
-.PHONY: clang-format-proto
-clang-format-proto: $(sagefile)
-	@$(sagefile) ClangFormatProto
+.PHONY: go-lint
+go-lint: $(sagefile)
+	@$(sagefile) GoLint

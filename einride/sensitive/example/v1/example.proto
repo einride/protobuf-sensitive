@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package einride.sensitive.example.v1;
+
+import "einride/sensitive/v1/annotations.proto";
+
+// Example message for testing and validation of sensitive fields.
+message ExampleMessage {
+  string sensitive_field = 1 [(einride.sensitive.v1.sensitive) = true];
+  string non_sensitive_field = 2;
+  int64 non_string_field = 3;
+  Nested nested = 4;
+  repeated Nested repeated_nested = 5;
+  map<int64, Nested> map_nested = 6;
+  // Nested example message.
+  message Nested {
+    string sensitive_field = 1 [(einride.sensitive.v1.sensitive) = true];
+    string non_sensitive_field = 2;
+    int64 non_string_field = 3;
+    string another_sensitive_field = 4 [(einride.sensitive.v1.sensitive) = true];
+  }
+}

@@ -1,4 +1,4 @@
-module go.einride.tech/einride/protobuf-sensitive
+module go.einride.tech/protobuf-sensitive
 
 go 1.18
 

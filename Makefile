@@ -51,6 +51,10 @@ all: $(sagefile)
 buf-format: $(sagefile)
 	@$(sagefile) BufFormat
 
+.PHONY: buf-generate
+buf-generate: $(sagefile)
+	@$(sagefile) BufGenerate
+
 .PHONY: buf-lint
 buf-lint: $(sagefile)
 	@$(sagefile) BufLint
@@ -62,3 +66,11 @@ buf-push: $(sagefile)
 .PHONY: go-lint
 go-lint: $(sagefile)
 	@$(sagefile) GoLint
+
+.PHONY: go-test
+go-test: $(sagefile)
+	@$(sagefile) GoTest
+
+.PHONY: protoc-gen-go
+protoc-gen-go: $(sagefile)
+	@$(sagefile) ProtocGenGo

@@ -3,7 +3,7 @@ package protosensitive
 import (
 	"testing"
 
-	examplev1 "go.buf.build/protocolbuffers/go/einride/sensitive/einride/sensitive/example/v1"
+	examplev1 "go.einride.tech/protobuf-sensitive/gen/einride/sensitive/example/v1"
 	"google.golang.org/protobuf/testing/protocmp"
 	"gotest.tools/v3/assert"
 )

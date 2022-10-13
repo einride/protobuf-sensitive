@@ -1,7 +1,7 @@
 package protosensitive
 
 import (
-	sensitivev1 "go.buf.build/protocolbuffers/go/einride/sensitive/einride/sensitive/v1"
+	sensitivev1 "go.einride.tech/protobuf-sensitive/gen/einride/sensitive/v1"
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/reflect/protopath"
 	"google.golang.org/protobuf/reflect/protorange"

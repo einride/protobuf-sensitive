@@ -6,8 +6,10 @@ import (
 	"go.einride.tech/sage/sg"
 	"go.einride.tech/sage/sgtool"
 	"go.einride.tech/sage/tools/sgbuf"
+	"go.einride.tech/sage/tools/sggit"
 	"go.einride.tech/sage/tools/sggo"
 	"go.einride.tech/sage/tools/sggolangcilint"
+	"go.einride.tech/sage/tools/sggolicenses"
 )
 
 func main() {
@@ -23,7 +25,15 @@ func All(ctx context.Context) error {
 	sg.Deps(ctx, BufFormat, BufLint, GoLint)
 	sg.Deps(ctx, BufGenerate)
 	sg.Deps(ctx, GoTest)
+	sg.Deps(ctx, GoModTidy)
+	sg.Deps(ctx, GoLicenses)
+	sg.Deps(ctx, GitVerifyNoDiff)
 	return nil
+}
+
+func GitVerifyNoDiff(ctx context.Context) error {
+	sg.Logger(ctx).Println("verifying that git has no diff...")
+	return sggit.VerifyNoDiff(ctx)
 }
 
 func BufFormat(ctx context.Context) error {
@@ -44,6 +54,16 @@ func BufPush(ctx context.Context) error {
 func GoLint(ctx context.Context) error {
 	sg.Logger(ctx).Println("linting Go modules..")
 	return sggolangcilint.Run(ctx)
+}
+
+func GoLicenses(ctx context.Context) error {
+	sg.Logger(ctx).Println("checking Go licenses...")
+	return sggolicenses.Check(ctx)
+}
+
+func GoModTidy(ctx context.Context) error {
+	sg.Logger(ctx).Println("tidying Go module files...")
+	return sg.Command(ctx, "go", "mod", "tidy", "-v").Run()
 }
 
 func ProtocGenGo(ctx context.Context) error {

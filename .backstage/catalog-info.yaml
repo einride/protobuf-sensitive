@@ -1,0 +1,14 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: protobuf-sensitive
+  description: |
+    A sensitive annotation for protocol buffers
+  annotations:
+    github.com/project-slug: einride/protobuf-sensitive
+    github.com/team-slug: einride/team-cloud-control
+    backstage.io/source-location: url:https://github.com/einride/protobuf-sensitive/tree/master/
+spec:
+  type: library
+  lifecycle: production
+  owner: team-cloud-control

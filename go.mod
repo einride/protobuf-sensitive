@@ -3,7 +3,7 @@ module go.einride.tech/protobuf-sensitive
 go 1.19
 
 require (
-	google.golang.org/protobuf v1.31.0
+	google.golang.org/protobuf v1.32.0
 	gotest.tools/v3 v3.5.1
 )
 

@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: protobuf-sensitive
+  title: Protobuf Sensitive
+  description: |
+    A sensitive annotation for protocol buffers
+spec:
+  system: backend-sdk
+  type: library
+  lifecycle: production
+  owner: platform-engineering

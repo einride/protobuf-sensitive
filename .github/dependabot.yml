@@ -4,14 +4,17 @@ updates:
   - package-ecosystem: github-actions
     directory: /
     schedule:
-      interval: monthly
+      interval: weekly
 
   - package-ecosystem: gomod
     directory: /
     schedule:
-      interval: monthly
+      interval: weekly
+    groups:
+      all:
+        patterns: ["*"]
 
   - package-ecosystem: gomod
     directory: .sage
     schedule:
-      interval: monthly
+      interval: weekly

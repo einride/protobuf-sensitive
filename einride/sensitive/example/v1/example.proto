@@ -12,6 +12,7 @@ message ExampleMessage {
   Nested nested = 4;
   repeated Nested repeated_nested = 5;
   map<int64, Nested> map_nested = 6;
+  string debug_redacted_field = 7 [debug_redact = true];
   // Nested example message.
   message Nested {
     string sensitive_field = 1 [(einride.sensitive.v1.sensitive) = true];

@@ -50,6 +50,7 @@ func TestRedact(t *testing.T) {
 					AnotherSensitiveField: "ultra secret",
 				},
 			},
+			DebugRedactedField: "most secret",
 		}
 		expected := &examplev1.ExampleMessage{
 			SensitiveField:    "<redacted>",
@@ -70,6 +71,7 @@ func TestRedact(t *testing.T) {
 					AnotherSensitiveField: "<redacted>",
 				},
 			},
+			DebugRedactedField: "<redacted>",
 		}
 		actual := Redact(input)
 		assert.DeepEqual(t, expected, actual, protocmp.Transform())

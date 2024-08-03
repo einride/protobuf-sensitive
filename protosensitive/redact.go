@@ -6,6 +6,7 @@ import (
 	"google.golang.org/protobuf/reflect/protopath"
 	"google.golang.org/protobuf/reflect/protorange"
 	"google.golang.org/protobuf/reflect/protoreflect"
+	"google.golang.org/protobuf/types/descriptorpb"
 )
 
 // Redact sensitive fields from the input message.
@@ -19,6 +20,10 @@ func Redact(input proto.Message) proto.Message {
 		}
 		if last.Step.Kind() != protopath.FieldAccessStep {
 			return nil
+		}
+		if last.Step.FieldDescriptor().Options().(*descriptorpb.FieldOptions).GetDebugRedact() {
+			hasSensitiveFields = true
+			return protorange.Terminate
 		}
 		if !proto.GetExtension(last.Step.FieldDescriptor().Options(), sensitivev1.E_Sensitive).(bool) {
 			return nil
@@ -36,6 +41,10 @@ func Redact(input proto.Message) proto.Message {
 			return nil
 		}
 		if last.Step.Kind() != protopath.FieldAccessStep {
+			return nil
+		}
+		if last.Step.FieldDescriptor().Options().(*descriptorpb.FieldOptions).GetDebugRedact() {
+			values.Index(-2).Value.Message().Set(last.Step.FieldDescriptor(), protoreflect.ValueOfString("<redacted>"))
 			return nil
 		}
 		if !proto.GetExtension(last.Step.FieldDescriptor().Options(), sensitivev1.E_Sensitive).(bool) {

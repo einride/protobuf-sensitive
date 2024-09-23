@@ -2,4 +2,4 @@ module go.einride.tech/protobuf-sensitive/.sage
 
 go 1.17
 
-require go.einride.tech/sage v0.309.0
+require go.einride.tech/sage v0.313.0

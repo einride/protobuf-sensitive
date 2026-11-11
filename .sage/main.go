@@ -8,7 +8,7 @@ import (
 	"go.einride.tech/sage/tools/sgbuf"
 	"go.einride.tech/sage/tools/sggit"
 	"go.einride.tech/sage/tools/sggo"
-	"go.einride.tech/sage/tools/sggolangcilint"
+	"go.einride.tech/sage/tools/sggolangcilintv2"
 	"go.einride.tech/sage/tools/sggolicenses"
 )
 
@@ -53,7 +53,7 @@ func BufPush(ctx context.Context) error {
 
 func GoLint(ctx context.Context) error {
 	sg.Logger(ctx).Println("linting Go modules..")
-	return sggolangcilint.Run(ctx)
+	return sggolangcilintv2.Run(ctx, sggolangcilintv2.Config{})
 }
 
 func GoLicenses(ctx context.Context) error {

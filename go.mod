@@ -1,6 +1,6 @@
 module go.einride.tech/protobuf-sensitive
 
-go 1.21
+go 1.26.11
 
 require (
 	google.golang.org/protobuf v1.34.2
